@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    List<RareCrewAssignment.Classfiles.Employee> employees = ViewBag.EmployeeData;
+    int i = 1;
+}
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+            table th {
+                background-color: #243b55;
+                color: white;
+                padding: 14px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            table td {
+                padding: 12px;
+                border: 1px solid #ddd;
+                color: #333;
+            }
+
+            table tr:hover {
+                background-color: #f2f6fc;
+            }
+
+        .red-row {
+            background-color: #ffcccc !important;
+        }
+
+        .white-row {
+            background-color: #ffffff !important;
+        }
+    </style>
+</head>
+
+<h2>Index</h2>
+<a href="@Url.Action("GeneratePNG", "Home")">Download Pie Chart</a>
+
+<table class="table employee-table">
+    <thead>
+        <tr>
+            <th>SrNo</th>
+            <th>EmployeeName</th>
+            <th>Total Working Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RareCrewAssignment.Classfiles.Employee emp in employees)
+        {
+            <tr style="border-bottom:1px solid #edf0f5;
+    background-color:@(emp.TotalWorkingHours < 100 ? "#ffcccc" : "#ffffff");">
+                <td>@i</td>
+                <td>@emp.EmployeeName</td>
+                <td>@emp.TotalWorkingHours</td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+
+
+
